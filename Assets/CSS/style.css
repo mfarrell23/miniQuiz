@@ -1,0 +1,37 @@
+body{
+background-color: pink;
+text-align: center;
+color: red;
+};
+        
+button {
+    padding: 10px;
+    margin: 24px;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: teal;
+    color: white;
+  }
+
+.box {
+  padding-top: 30px;
+  box-shadow:0 6px 12px 0 teal;
+  background-color: deeppink;
+}
+
+.questionCard {
+    display: block;
+    margin: 200px auto;
+    padding-bottom: 60px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 60vw;
+    background-color: cornsilk;
+    color: black;
+  }
+
+.card-contents {
+    padding: 5px 5px 30px 5px;
+  }
+
