@@ -5,10 +5,10 @@ color: red;
 };
         
 button {
-    padding: 10px;
-    margin: 24px;
+    padding: 20px;
+    margin: 34px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 30px;
     background-color: teal;
     color: white;
   }
