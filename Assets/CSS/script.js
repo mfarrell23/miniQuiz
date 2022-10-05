@@ -3,8 +3,9 @@ var questionbox = document.querySelector(".questionCard");
 var currentQuestion 
 var questionIndex = 0;
 var points = 0
+var timeLeftEl= document.getElementById("time-left")
+var secondsLeft;
 var choiceEl = document.getElementById("choices");
-var spawned = true
 const questions = [
         {
         q:"Who lost to the Bulls in the 1997 finals?",
@@ -43,11 +44,8 @@ const questions = [
     ];
         
     init()
-    spawnAnswers(spawned)
-
-
-answerEl.addEventListener("click", checkAnswer);
-alert //the correct answer to pop up ..answerEl to be hidden until a pA is clicked
+    spawnAnswers()
+    setTime()
 
 // this starts game/gets the question 
 function init () {
@@ -57,63 +55,57 @@ function init () {
     // update the with the current question
     var titleElement = document.getElementById("question");
     titleElement.textContent = currentQuestion.q;
-
-    // clear out the questions div before we create the buttons via a forloop
     choiceEl.innerHTML = "";
-
-    // var choiceNode3 = document.createElement("button");
-    // choiceNode3.setAttribute("class", "choices");
-    // choiceNode3.setAttribute("value", currentQuestion);
-    // choiceNode3.innerText = currentQuestion.pA[0]
-    // choiceEl.appendChild(choiceNode3)
-    //let choice_node
     }
+let answer
 
-function spawnAnswers(spawned){
-
-        currentQuestion.pA.forEach(function(pA, choice_node){
-          
-        if(spawned === true){
+function spawnAnswers(){
+    let choice_node
+        currentQuestion.pA.forEach(function(pA){
+        
             // create new button for each choice
-            choice_node = document.createElement("button");
+            choice_node = document.createElement("button");    
             choice_node.setAttribute("class", "choices");
             choice_node.setAttribute("value", pA);
             choice_node.innerText=pA
             console.log("spawned...")
-            choiceEl.appendChild(choice_node)
-        }else{
-            choice_node = document.getElementsByClassName("choices");
-            choice_node.setAttribute("class", "choices");
-            choice_node.setAttribute("value", pA);
+            choiceEl.appendChild(choice_node) 
 
-            choice_node.innerText=pA
-        }           
-            choice_node.addEventListener("click", questionClick)
-            // choiceNode.textContent = choice;
-            // HUGE HINT: we will need a new function declared for the following code to run -  we are assigning a function to be executed when we click the button
+            choice_node.addEventListener('click', ()=>{
+                console.log("This was clicked")
+                alert("the answer is " + currentQuestion.answerEl)
+                questionClick()
+            })
             
         })
             
 }
 
 function questionClick(){
-    // checkAnswer()
+    choiceEl.removeChild(choiceEl.firstChild)
+    choiceEl.removeChild(choiceEl.firstChild)
+    choiceEl.removeChild(choiceEl.firstChild)
 
     console.log("question click")
     questionIndex++;
     currentQuestion = questions[questionIndex];
     var titleElement = document.getElementById("question");
     titleElement.textContent = currentQuestion.q;
-    spawnAnswers(false)
+    spawnAnswers()
 }
 
-// define questionClick(){} - this is the function that is going to handle the logic for the button click - what happens when we click the button? We want to check if what I clicked and its value (hint: event.target) is the same as what is in questions.answerEl 
+function checkAnswer(event) {
+  
+}
 
-function checkAnswer() {
-    // called by the event listener
-    // show correct answer
-    // update score (if they got it right, score++)
-    // load next question
-    currentQuestion
-    questionEl.innerHTML = questions[currentQuestion].q
+function setTime(){
+   //This is my countdown timer
+    secondsLeft= 60;
+    var timerInterval= setInterval(function(){
+    secondsLeft--;
+    timeLeftEl.textContent= secondsLeft;
+    if(secondsLeft==0){
+    clearInterval(timerInterval);  
+    }
+        },1000);
 }
