@@ -1,56 +1,119 @@
 //Selects the questions element
-var questionbox = document.querySelector(".questionCard");   
-
-let header = document.getElementById("header")
-header.textContent = "This is my question"
-let p1 = document.getElementById("p1").innerHTML = "asfaf";
-
-var next = questionbox.querySelector(".next");
-var index = 0;
-var currentQuestion;
-var questions = [
+var questionbox = document.querySelector(".questionCard");  
+var currentQuestion 
+var questionIndex = 0;
+var points = 0
+var choiceEl = document.getElementById("choices");
+var spawned = true
+const questions = [
         {
-        question:"Who lost to the Bulls in the 90's finals?",
+        q:"Who lost to the Bulls in the 1997 finals?",
         answerEl: "Jazz",
-        possibleChoices: "Kings", "Jazz", "Knicks"},
+        pA: ["Kings", "Jazz", "Knicks"]
+        },
+        {
+        q:"Which team has the most consecutive rings?",
+        answerEl: "Cetics",
+        pA: ["Bulls", "Celtics", "Golden St."]
+        },
        
         {
-        question:"Who was the best point guardin the 90's?",
-        answerEl: "Stockton",
-        possibleChoices: "Stockton", "Jordan", "Bibby"},
+        q:"In what year was CP3, and D. Will drafted?",
+        answerEl: "2005",
+        pA: ["2005" , "2009", "2007"]
+        },
        
         {
-        question:"What does NBA stand for?",
-        answerEl: "National Basketball Assoc.",
-        possibleChoices: "National Basketball Assoc." , "National Buckets Assoc", "National bucketball Assoc."},
+        q:"Who is not a basketball player?",
+        answerEl: "Dante",
+        pA:["Noah", "Ostertag", "Dante"]
+        },
        
         {
-        question:"who is not a basketball player?",
-        answerEl: "Depp",
-        possibleChoices:"Noah", "Irving", "Depp"},
-       
-        {
-        question:"What month is Allstar weekend?",
+        q:"What month is Allstar weekend?",
         answerEl: "Feb",
-        possibleChoices:"June", "Sept", "Feb"},
+        pA:["June", "Feb", "Sept"]
+        },
 
         {
-        question:"Who is the G.O.A.T?",
+        q:"Who is the G.O.A.T?",
         answerEl: "Michael Jordan",
-        possibleChoices:"Lebron James", "Magic Johnson", "Michael Jordan"}
+        pA:["Lebron James", "Magic Johnson", "Michael Jordan"]
+    }
     ];
+        
+    init()
+    spawnAnswers(spawned)
 
 
+answerEl.addEventListener("click", checkAnswer);
+alert //the correct answer to pop up ..answerEl to be hidden until a pA is clicked
 
+// this starts game/gets the question 
+function init () {
+    // get the current question object from the question array
+    currentQuestion = questions[questionIndex];
+ 
+    // update the with the current question
+    var titleElement = document.getElementById("question");
+    titleElement.textContent = currentQuestion.q;
 
-    let questionCard= document.querySelector('.questionCard');
-    questionCard.innerText= questions[0].question;
+    // clear out the questions div before we create the buttons via a forloop
+    choiceEl.innerHTML = "";
 
+    // var choiceNode3 = document.createElement("button");
+    // choiceNode3.setAttribute("class", "choices");
+    // choiceNode3.setAttribute("value", currentQuestion);
+    // choiceNode3.innerText = currentQuestion.pA[0]
+    // choiceEl.appendChild(choiceNode3)
+    //let choice_node
+    }
 
+function spawnAnswers(spawned){
 
-if (element.matches ("button")===true){
-    var index= element.parentElement.getAttribute("date-index)");
+        currentQuestion.pA.forEach(function(pA, choice_node){
+          
+        if(spawned === true){
+            // create new button for each choice
+            choice_node = document.createElement("button");
+            choice_node.setAttribute("class", "choices");
+            choice_node.setAttribute("value", pA);
+            choice_node.innerText=pA
+            console.log("spawned...")
+            choiceEl.appendChild(choice_node)
+        }else{
+            choice_node = document.getElementsByClassName("choices");
+            choice_node.setAttribute("class", "choices");
+            choice_node.setAttribute("value", pA);
+
+            choice_node.innerText=pA
+        }           
+            choice_node.addEventListener("click", questionClick)
+            // choiceNode.textContent = choice;
+            // HUGE HINT: we will need a new function declared for the following code to run -  we are assigning a function to be executed when we click the button
+            
+        })
+            
 }
 
-answerEl.addEventListener("click", showResponse);
-confirm //the correct answer to pop up
+function questionClick(){
+    // checkAnswer()
+
+    console.log("question click")
+    questionIndex++;
+    currentQuestion = questions[questionIndex];
+    var titleElement = document.getElementById("question");
+    titleElement.textContent = currentQuestion.q;
+    spawnAnswers(false)
+}
+
+// define questionClick(){} - this is the function that is going to handle the logic for the button click - what happens when we click the button? We want to check if what I clicked and its value (hint: event.target) is the same as what is in questions.answerEl 
+
+function checkAnswer() {
+    // called by the event listener
+    // show correct answer
+    // update score (if they got it right, score++)
+    // load next question
+    currentQuestion
+    questionEl.innerHTML = questions[currentQuestion].q
+}
