@@ -7,5 +7,8 @@ I styled my page with my favorite colors and tryied to impliment the things I ha
 I have a set timer that counts down until you complete the quiz.
 I was not able to add the score or tie it to the local storage.
 I had alot of help from Will, Henery, and a tutor.
+
 readme.md
 ![screenshot](quizpic.png)
+
+https://mfarrell23.github.io/miniQuiz/
